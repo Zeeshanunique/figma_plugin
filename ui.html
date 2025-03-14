@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    :root {
+      --primary-color: #18A0FB;
+      --primary-hover: #0D8EE3;
+      --error-color: #DC3545;
+      --success-color: #28A745;
+      --warning-color: #FFC107;
+      --text-color: #333;
+      --border-radius: 8px;
+      --transition: all 0.2s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 20px;
+      color: var(--text-color);
+      background-color: #FFFFFF;
+      line-height: 1.5;
+    }
+    
+    h2 {
+      margin-bottom: 24px;
+      font-size: 24px;
+      font-weight: 600;
+      color: #1E1E1E;
+      letter-spacing: -0.5px;
+    }
+    
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      max-width: 100%;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    label {
+      font-weight: 500;
+      font-size: 14px;
+      color: #4F4F4F;
+    }
+    
+    textarea, input[type="text"], input[type="password"] {
+      border-radius: var(--border-radius);
+      border: 2px solid #E0E0E0;
+      padding: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      transition: var(--transition);
+      background-color: #FAFAFA;
+    }
+    
+    textarea {
+      height: 120px;
+      resize: vertical;
+      min-height: 120px;
+      max-height: 300px;
+    }
+    
+    textarea:focus, input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      background-color: #FFFFFF;
+      box-shadow: 0 0 0 3px rgba(24, 160, 251, 0.1);
+    }
+    
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    
+    button {
+      border-radius: var(--border-radius);
+      padding: 12px 24px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    
+    .primary-button {
+      background-color: var(--primary-color);
+      color: white;
+    }
+    
+    .primary-button:hover:not(:disabled) {
+      background-color: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+    
+    .secondary-button {
+      background-color: #F5F5F5;
+      color: #4F4F4F;
+      border: 1px solid #E0E0E0;
+    }
+    
+    .secondary-button:hover:not(:disabled) {
+      background-color: #EBEBEB;
+    }
+    
+    .status {
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: var(--border-radius);
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      animation: slideIn 0.3s ease;
+    }
+    
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .status.processing {
+      background-color: #FFF8E1;
+      color: #856404;
+      border: 1px solid #FFE69C;
+    }
+    
+    .status.success {
+      background-color: #E8F5E9;
+      color: #155724;
+      border: 1px solid #C3E6CB;
+    }
+    
+    .status.error {
+      background-color: #FFEBEE;
+      color: #721C24;
+      border: 1px solid #F5C6CB;
+    }
+    
+    .tips {
+      background-color: #F8F9FA;
+      border: 1px solid #E9ECEF;
+      border-radius: var(--border-radius);
+      padding: 16px;
+    }
+    
+    .tips h3 {
+      color: #2C3E50;
+      margin-bottom: 12px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    
+    .tips ul {
+      margin: 0;
+      padding-left: 24px;
+    }
+    
+    .tips li {
+      margin-bottom: 8px;
+      color: #4F4F4F;
+      font-size: 14px;
+    }
+    
+    .tips li:last-child {
+      margin-bottom: 0;
+    }
+    
+    .api-section {
+      background-color: #F8F9FA;
+      border: 1px solid #E9ECEF;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+    }
+    
+    .api-toggle {
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 14px;
+      color: #2C3E50;
+      user-select: none;
+      transition: var(--transition);
+    }
+    
+    .api-toggle:hover {
+      background-color: #F1F3F5;
+    }
+    
+    .api-toggle svg {
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+    
+    .api-toggle.open svg {
+      transform: rotate(180deg);
+    }
+    
+    .api-details {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      padding: 0 16px;
+    }
+    
+    .api-details.open {
+      max-height: 200px;
+      padding: 0 16px 16px;
+    }
+    
+    .api-note {
+      font-size: 12px;
+      color: #6C757D;
+      margin-top: 8px;
+      padding: 8px;
+      background-color: #E9ECEF;
+      border-radius: 4px;
+      line-height: 1.4;
+    }
+    
+    .examples {
+      margin-top: 16px;
+    }
+    
+    .example-prompt {
+      font-size: 13px;
+      color: #4F4F4F;
+      padding: 8px 12px;
+      background-color: #F1F3F5;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .example-prompt:hover {
+      background-color: #E9ECEF;
+      transform: translateX(4px);
+    }
+    
+    .example-prompt:last-child {
+      margin-bottom: 0;
+    }
+    
+    .loading-spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>AI Design Generator</h2>
+    
+    <div class="input-group">
+      <label for="prompt">Describe what you want to generate:</label>
+      <textarea 
+        id="prompt" 
+        placeholder="Example: A minimalist logo for a coffee shop with a cup icon and clean typography"
+        spellcheck="true"
+      ></textarea>
+    </div>
+    
+    <div class="examples">
+      <div class="example-prompt" data-prompt="A modern, minimalist logo for a tech startup with abstract geometric shapes in blue and gray">
+        💡 Modern tech startup logo
+      </div>
+      <div class="example-prompt" data-prompt="A playful and colorful mobile app button with gradient background and subtle shadow">
+        💡 Playful mobile app button
+      </div>
+      <div class="example-prompt" data-prompt="A professional dashboard sidebar with dark theme and elegant icons">
+        💡 Professional dashboard sidebar
+      </div>
+    </div>
+    
+    <div class="api-section">
+      <div class="api-toggle" id="api-toggle">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>API Settings (Optional)</span>
+      </div>
+      <div class="api-details" id="api-details">
+        <div class="input-group">
+          <label for="apiKey">OpenAI API Key:</label>
+          <input 
+            type="password" 
+            id="apiKey" 
+            placeholder="sk-..."
+            autocomplete="off"
+          >
+          <div class="api-note">
+            💡 If no API key is provided, the plugin will run in demo mode with simulated designs. 
+            Get your API key from OpenAI's website.
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="tips">
+      <h3>✨ Tips for better results:</h3>
+      <ul>
+        <li>Be specific about what design element you need (icon, button, layout, etc.)</li>
+        <li>Include details about style, colors, and mood</li>
+        <li>Mention the intended use case or context</li>
+      </ul>
+    </div>
+    
+    <div id="status-container" class="status hidden"></div>
+    
+    <div class="button-group">
+      <button class="secondary-button" id="cancel">Cancel</button>
+      <button class="primary-button" id="generate">
+        <span>Generate Design</span>
+        <div class="loading-spinner hidden"></div>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Get UI elements
+    const promptInput = document.getElementById('prompt');
+    const apiKeyInput = document.getElementById('apiKey');
+    const generateButton = document.getElementById('generate');
+    const cancelButton = document.getElementById('cancel');
+    const statusContainer = document.getElementById('status-container');
+    const apiToggle = document.getElementById('api-toggle');
+    const apiDetails = document.getElementById('api-details');
+    const loadingSpinner = generateButton.querySelector('.loading-spinner');
+    const generateButtonText = generateButton.querySelector('span');
+    const examplePrompts = document.querySelectorAll('.example-prompt');
+    
+    // API toggle functionality
+    apiToggle.addEventListener('click', () => {
+      apiToggle.classList.toggle('open');
+      apiDetails.classList.toggle('open');
+    });
+    
+    // Example prompts functionality
+    examplePrompts.forEach(example => {
+      example.addEventListener('click', () => {
+        const prompt = example.dataset.prompt;
+        promptInput.value = prompt;
+        promptInput.focus();
+      });
+    });
+    
+    // Handle generate button click
+    generateButton.addEventListener('click', () => {
+      const prompt = promptInput.value.trim();
+      const apiKey = apiKeyInput.value.trim();
+      
+      if (!prompt) {
+        showStatus('error', '⚠️ Please enter a prompt description');
+        return;
+      }
+      
+      // Send message to the plugin code
+      parent.postMessage({ 
+        pluginMessage: { 
+          type: 'generate-design', 
+          prompt: prompt,
+          apiKey: apiKey
+        } 
+      }, '*');
+      
+      // Update UI for processing state
+      generateButton.disabled = true;
+      generateButtonText.textContent = 'Generating...';
+      loadingSpinner.classList.remove('hidden');
+    });
+    
+    // Handle cancel button click
+    cancelButton.addEventListener('click', () => {
+      parent.postMessage({ 
+        pluginMessage: { 
+          type: 'cancel' 
+        } 
+      }, '*');
+    });
+    
+    // Listen for messages from the plugin code
+    window.onmessage = (event) => {
+      const message = event.data.pluginMessage;
+      
+      if (message && message.type === 'generation-update') {
+        if (message.status === 'Processing prompt...') {
+          showStatus('processing', '🔄 ' + message.status);
+        } else if (message.status === 'success') {
+          showStatus('success', '✅ ' + message.message);
+          resetGenerateButton();
+        } else if (message.status === 'error') {
+          showStatus('error', '❌ ' + message.message);
+          resetGenerateButton();
+        }
+      }
+    };
+    
+    // Helper function to show status messages
+    function showStatus(type, message) {
+      statusContainer.textContent = message;
+      statusContainer.className = `status ${type}`;
+      statusContainer.classList.remove('hidden');
+    }
+    
+    // Helper function to reset generate button state
+    function resetGenerateButton() {
+      generateButton.disabled = false;
+      generateButtonText.textContent = 'Generate Design';
+      loadingSpinner.classList.add('hidden');
+    }
+    
+    // Auto-resize textarea as user types
+    promptInput.addEventListener('input', function() {
+      this.style.height = 'auto';
+      this.style.height = (this.scrollHeight) + 'px';
+    });
+  </script>
+</body>
+</html> 
