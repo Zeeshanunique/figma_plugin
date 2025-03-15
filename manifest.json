@@ -8,5 +8,9 @@
   "networkAccess": {
     "allowedDomains": ["https://api.openai.com"]
   },
-  "permissions": ["currentuser"]
+  "permissions": ["currentuser"],
+  "ui": {
+    "width": 450,
+    "height": 750
+  }
 } 

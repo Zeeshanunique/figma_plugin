@@ -9,7 +9,7 @@
       --success-color: #28A745;
       --warning-color: #FFC107;
       --text-color: #333;
-      --border-radius: 8px;
+      --border-radius: 6px;
       --transition: all 0.2s ease;
     }
 
@@ -22,15 +22,16 @@
     body {
       font-family: 'Inter', sans-serif;
       margin: 0;
-      padding: 20px;
+      padding: 12px;
       color: var(--text-color);
       background-color: #FFFFFF;
-      line-height: 1.5;
+      line-height: 1.4;
+      font-size: 13px;
     }
     
     h2 {
-      margin-bottom: 24px;
-      font-size: 24px;
+      margin-bottom: 16px;
+      font-size: 18px;
       font-weight: 600;
       color: #1E1E1E;
       letter-spacing: -0.5px;
@@ -39,7 +40,7 @@
     .container {
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 14px;
       max-width: 100%;
       animation: fadeIn 0.3s ease;
     }
@@ -52,52 +53,52 @@
     .input-group {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
     }
     
     label {
       font-weight: 500;
-      font-size: 14px;
+      font-size: 13px;
       color: #4F4F4F;
     }
     
     textarea, input[type="text"], input[type="password"] {
       border-radius: var(--border-radius);
-      border: 2px solid #E0E0E0;
-      padding: 12px;
+      border: 1px solid #E0E0E0;
+      padding: 8px;
       font-family: 'Inter', sans-serif;
-      font-size: 14px;
+      font-size: 13px;
       transition: var(--transition);
       background-color: #FAFAFA;
     }
     
     textarea {
-      height: 120px;
+      height: 80px;
       resize: vertical;
-      min-height: 120px;
-      max-height: 300px;
+      min-height: 80px;
+      max-height: 200px;
     }
     
     textarea:focus, input:focus {
       outline: none;
       border-color: var(--primary-color);
       background-color: #FFFFFF;
-      box-shadow: 0 0 0 3px rgba(24, 160, 251, 0.1);
+      box-shadow: 0 0 0 2px rgba(24, 160, 251, 0.1);
     }
     
     .button-group {
       display: flex;
       justify-content: space-between;
-      gap: 12px;
-      margin-top: 8px;
+      gap: 8px;
+      margin-top: 4px;
     }
     
     button {
       border-radius: var(--border-radius);
-      padding: 12px 24px;
+      padding: 8px 16px;
       font-family: 'Inter', sans-serif;
       font-weight: 500;
-      font-size: 14px;
+      font-size: 13px;
       cursor: pointer;
       transition: var(--transition);
       border: none;
@@ -105,7 +106,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 6px;
     }
     
     button:disabled {
@@ -134,13 +135,13 @@
     }
     
     .status {
-      margin-top: 16px;
-      padding: 16px;
+      margin-top: 10px;
+      padding: 10px;
       border-radius: var(--border-radius);
-      font-size: 14px;
+      font-size: 13px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       animation: slideIn 0.3s ease;
     }
     
@@ -171,25 +172,25 @@
       background-color: #F8F9FA;
       border: 1px solid #E9ECEF;
       border-radius: var(--border-radius);
-      padding: 16px;
+      padding: 10px;
     }
     
     .tips h3 {
       color: #2C3E50;
-      margin-bottom: 12px;
-      font-size: 16px;
+      margin-bottom: 8px;
+      font-size: 14px;
       font-weight: 600;
     }
     
     .tips ul {
       margin: 0;
-      padding-left: 24px;
+      padding-left: 20px;
     }
     
     .tips li {
-      margin-bottom: 8px;
+      margin-bottom: 4px;
       color: #4F4F4F;
-      font-size: 14px;
+      font-size: 12px;
     }
     
     .tips li:last-child {
@@ -204,13 +205,13 @@
     }
     
     .api-toggle {
-      padding: 16px;
+      padding: 10px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 8px;
       cursor: pointer;
       font-weight: 500;
-      font-size: 14px;
+      font-size: 13px;
       color: #2C3E50;
       user-select: none;
       transition: var(--transition);
@@ -223,6 +224,8 @@
     .api-toggle svg {
       transition: transform 0.3s ease;
       flex-shrink: 0;
+      width: 14px;
+      height: 14px;
     }
     
     .api-toggle.open svg {
@@ -233,52 +236,53 @@
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.3s ease, padding 0.3s ease;
-      padding: 0 16px;
+      padding: 0 10px;
     }
     
     .api-details.open {
-      max-height: 200px;
-      padding: 0 16px 16px;
+      max-height: 150px;
+      padding: 0 10px 10px;
     }
     
     .api-note {
-      font-size: 12px;
+      font-size: 11px;
       color: #6C757D;
-      margin-top: 8px;
-      padding: 8px;
+      margin-top: 6px;
+      padding: 6px;
       background-color: #E9ECEF;
       border-radius: 4px;
-      line-height: 1.4;
+      line-height: 1.3;
     }
     
     .examples {
-      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
     }
     
     .example-prompt {
-      font-size: 13px;
+      font-size: 12px;
       color: #4F4F4F;
-      padding: 8px 12px;
+      padding: 6px 10px;
       background-color: #F1F3F5;
       border-radius: 4px;
-      margin-bottom: 8px;
       cursor: pointer;
       transition: var(--transition);
+      flex: 1;
+      min-width: 120px;
+      text-align: center;
     }
     
     .example-prompt:hover {
       background-color: #E9ECEF;
-      transform: translateX(4px);
-    }
-    
-    .example-prompt:last-child {
-      margin-bottom: 0;
+      transform: translateY(-2px);
     }
     
     .loading-spinner {
       display: inline-block;
-      width: 16px;
-      height: 16px;
+      width: 14px;
+      height: 14px;
       border: 2px solid rgba(255, 255, 255, 0.3);
       border-radius: 50%;
       border-top-color: #fff;
@@ -292,6 +296,195 @@
     .hidden {
       display: none;
     }
+    
+    /* Enhanced Tab Styling */
+    .tabs {
+      display: flex;
+      margin-bottom: 12px;
+      border-bottom: 3px solid #E0E0E0;
+      background-color: #F0F4F8;
+      border-radius: var(--border-radius) var(--border-radius) 0 0;
+      overflow: hidden;
+    }
+    
+    .tab {
+      padding: 12px 16px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #4F4F4F;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: var(--transition);
+      text-align: center;
+      flex: 1;
+    }
+    
+    .tab.active {
+      color: #1976D2;
+      border-bottom-color: #1976D2;
+      background-color: white;
+    }
+    
+    .tab:hover:not(.active) {
+      color: #2C3E50;
+      background-color: #E9ECEF;
+    }
+    
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    /* Enhanced Iteration Section */
+    .iteration-section {
+      background-color: #E1F5FE;
+      border: 3px solid #29B6F6;
+      border-radius: var(--border-radius);
+      padding: 16px;
+      margin-top: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .iteration-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 16px;
+      color: #01579B;
+      margin-bottom: 12px;
+    }
+    
+    .iteration-header svg {
+      width: 24px;
+      height: 24px;
+    }
+    
+    .iteration-note {
+      font-size: 14px;
+      color: #01579B;
+      margin-bottom: 15px;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 10px;
+      border-radius: 4px;
+      border-left: 4px solid #0288D1;
+    }
+    
+    /* Enhanced Badge */
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 12px;
+      background-color: #F50057;
+      color: white;
+      margin-left: 8px;
+      animation: pulse 1s infinite;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    
+    /* Example iteration prompts */
+    .iteration-examples {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    
+    .iteration-example {
+      font-size: 13px;
+      color: #0277BD;
+      padding: 8px 12px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: var(--transition);
+      flex: 1;
+      min-width: 120px;
+      text-align: center;
+      border: 1px solid #4FC3F7;
+      font-weight: 500;
+    }
+    
+    .iteration-example:hover {
+      background-color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    }
+    
+    /* Iteration Button */
+    .iteration-button {
+      display: block; /* Always visible for testing */
+      margin-top: 16px;
+      padding: 12px;
+      background-color: #E1F5FE;
+      border: 3px solid #29B6F6;
+      border-radius: var(--border-radius);
+      color: #01579B;
+      font-weight: 700;
+      font-size: 14px;
+      text-align: center;
+      cursor: pointer;
+      animation: pulse 1.5s infinite;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .iteration-button:hover {
+      background-color: #B3E5FC;
+      transform: translateY(-2px);
+    }
+    
+    /* Debug Panel */
+    .debug-panel {
+      margin-top: 10px;
+      padding: 8px;
+      background-color: #F8F9FA;
+      border: 1px dashed #CCC;
+      border-radius: var(--border-radius);
+      font-size: 11px;
+      color: #666;
+    }
+    
+    .debug-panel h4 {
+      margin-bottom: 4px;
+      font-size: 12px;
+    }
+    
+    .debug-panel pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    /* New Attention Grabber */
+    .attention-notice {
+      background-color: #FFECB3;
+      border-left: 4px solid #FFC107;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 0 4px 4px 0;
+      font-weight: 500;
+      color: #7E5700;
+      animation: shake 1s cubic-bezier(.36,.07,.19,.97) 2s both;
+    }
+
+    @keyframes shake {
+      10%, 90% { transform: translate3d(-1px, 0, 0); }
+      20%, 80% { transform: translate3d(2px, 0, 0); }
+      30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+      40%, 60% { transform: translate3d(4px, 0, 0); }
+    }
   </style>
 </head>
 
@@ -299,30 +492,81 @@
   <div class="container">
     <h2>AI Design Generator</h2>
     
-    <div class="input-group">
-      <label for="prompt">Describe what you want to generate:</label>
-      <textarea 
-        id="prompt" 
-        placeholder="Example: A minimalist logo for a coffee shop with a cup icon and clean typography"
-        spellcheck="true"
-      ></textarea>
+    <!-- Attention grabber notice -->
+    <div class="attention-notice">
+      ⚠️ Notice: This plugin now has an Iteration feature! Click the "Iterate" tab to modify your existing designs!
     </div>
     
-    <div class="examples">
-      <div class="example-prompt" data-prompt="A modern, minimalist logo for a tech startup with abstract geometric shapes in blue and gray">
-        💡 Modern tech startup logo
+    <div class="tabs">
+      <div class="tab active" data-tab="create">Create</div>
+      <div class="tab" data-tab="iterate">Iterate <span class="badge" id="iteration-badge">New</span></div>
+    </div>
+    
+    <div class="tab-content active" id="create-tab">
+      <div class="input-group">
+        <label for="prompt">Describe what you want to generate:</label>
+        <textarea 
+          id="prompt" 
+          placeholder="Example: A minimalist logo for a coffee shop with a cup icon and clean typography"
+          spellcheck="true"
+        ></textarea>
       </div>
-      <div class="example-prompt" data-prompt="A playful and colorful mobile app button with gradient background and subtle shadow">
-        💡 Playful mobile app button
+      
+      <div class="examples">
+        <div class="example-prompt" data-prompt="A modern, minimalist logo for a tech startup with abstract geometric shapes in blue and gray">
+          💡 Tech logo
+        </div>
+        <div class="example-prompt" data-prompt="A playful and colorful mobile app button with gradient background and subtle shadow">
+          💡 App button
+        </div>
+        <div class="example-prompt" data-prompt="A professional dashboard sidebar with dark theme and elegant icons">
+          💡 Dashboard UI
+        </div>
       </div>
-      <div class="example-prompt" data-prompt="A professional dashboard sidebar with dark theme and elegant icons">
-        💡 Professional dashboard sidebar
+      
+      <!-- Direct iteration button that will appear after generation -->
+      <div class="iteration-button" id="direct-iteration-button">
+        ✨ Click here to iterate on your generated design ✨
+      </div>
+    </div>
+    
+    <div class="tab-content" id="iterate-tab">
+      <div class="iteration-section">
+        <div class="iteration-header">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4C7.58 4 4.01 7.58 4.01 12C4.01 16.42 7.58 20 12 20C15.73 20 18.84 17.45 19.73 14H17.65C16.83 16.33 14.61 18 12 18C8.69 18 6 15.31 6 12C6 8.69 8.69 6 12 6C13.66 6 15.14 6.69 16.22 7.78L13 11H20V4L17.65 6.35Z" fill="#01579B"/>
+          </svg>
+          <span>Iteration Mode</span>
+        </div>
+        <div class="iteration-note">
+          Modify your existing design by describing the changes you want to make. First generate a design in the "Create" tab, then come here to refine it!
+        </div>
+        <div class="input-group">
+          <label for="iteration-prompt">Describe the changes you want:</label>
+          <textarea 
+            id="iteration-prompt" 
+            placeholder="Example: Make the colors more vibrant and add a gradient background"
+            spellcheck="true"
+          ></textarea>
+        </div>
+        
+        <div class="iteration-examples">
+          <div class="iteration-example" data-prompt="Make the colors more vibrant and add a gradient background">
+            🎨 Change colors
+          </div>
+          <div class="iteration-example" data-prompt="Add a drop shadow and make it look more 3D">
+            🔍 Add depth
+          </div>
+          <div class="iteration-example" data-prompt="Simplify the design and make it more minimalist">
+            ✨ Simplify
+          </div>
+        </div>
       </div>
     </div>
     
     <div class="api-section">
       <div class="api-toggle" id="api-toggle">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         <span>API Settings (Optional)</span>
@@ -337,8 +581,7 @@
             autocomplete="off"
           >
           <div class="api-note">
-            💡 If no API key is provided, the plugin will run in demo mode with simulated designs. 
-            Get your API key from OpenAI's website.
+            💡 Without API key, plugin runs in demo mode with simulated designs.
           </div>
         </div>
       </div>
@@ -347,7 +590,7 @@
     <div class="tips">
       <h3>✨ Tips for better results:</h3>
       <ul>
-        <li>Be specific about what design element you need (icon, button, layout, etc.)</li>
+        <li>Be specific about what design element you need</li>
         <li>Include details about style, colors, and mood</li>
         <li>Mention the intended use case or context</li>
       </ul>
@@ -362,11 +605,18 @@
         <div class="loading-spinner hidden"></div>
       </button>
     </div>
+    
+    <!-- Debug panel to help troubleshoot -->
+    <div class="debug-panel" id="debug-panel">
+      <h4>Debug Info:</h4>
+      <pre id="debug-info">Status: Initialized</pre>
+    </div>
   </div>
 
   <script>
     // Get UI elements
     const promptInput = document.getElementById('prompt');
+    const iterationPromptInput = document.getElementById('iteration-prompt');
     const apiKeyInput = document.getElementById('apiKey');
     const generateButton = document.getElementById('generate');
     const cancelButton = document.getElementById('cancel');
@@ -376,6 +626,67 @@
     const loadingSpinner = generateButton.querySelector('.loading-spinner');
     const generateButtonText = generateButton.querySelector('span');
     const examplePrompts = document.querySelectorAll('.example-prompt');
+    const iterationExamples = document.querySelectorAll('.iteration-example');
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+    const iterationBadge = document.getElementById('iteration-badge');
+    const directIterationButton = document.getElementById('direct-iteration-button');
+    const debugInfo = document.getElementById('debug-info');
+    
+    // Immediately enable iteration UI for testing
+    let hasGeneratedDesign = true;
+    let activeTab = 'create';
+    
+    // Debug function
+    function logDebug(message) {
+      const timestamp = new Date().toLocaleTimeString();
+      debugInfo.textContent += `\n[${timestamp}] ${message}`;
+      console.log(`[DEBUG] ${message}`);
+    }
+    
+    // Tab functionality
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Update active tab
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        
+        // Show corresponding content
+        const tabName = tab.dataset.tab;
+        activeTab = tabName;
+        tabContents.forEach(content => {
+          content.classList.remove('active');
+          if (content.id === `${tabName}-tab`) {
+            content.classList.add('active');
+          }
+        });
+        
+        // Update generate button text based on active tab
+        if (activeTab === 'create') {
+          generateButtonText.textContent = 'Generate Design';
+        } else {
+          generateButtonText.textContent = 'Update Design';
+        }
+        
+        // Log tab switch
+        if (tabName === 'iterate') {
+          logDebug('Switched to Iterate tab');
+        } else {
+          logDebug('Switched to Create tab');
+        }
+      });
+    });
+    
+    // Direct iteration button functionality
+    directIterationButton.addEventListener('click', () => {
+      // Switch to the iterate tab
+      tabs.forEach(t => {
+        if (t.dataset.tab === 'iterate') {
+          t.click();
+        }
+      });
+      logDebug('Direct iteration button clicked');
+    });
     
     // API toggle functionality
     apiToggle.addEventListener('click', () => {
@@ -392,9 +703,30 @@
       });
     });
     
+    // Iteration example prompts functionality
+    iterationExamples.forEach(example => {
+      example.addEventListener('click', () => {
+        const prompt = example.dataset.prompt;
+        iterationPromptInput.value = prompt;
+        iterationPromptInput.focus();
+      });
+    });
+    
     // Handle generate button click
     generateButton.addEventListener('click', () => {
-      const prompt = promptInput.value.trim();
+      let prompt;
+      let messageType;
+      
+      if (activeTab === 'create') {
+        prompt = promptInput.value.trim();
+        messageType = 'generate-design';
+        logDebug('Generate button clicked in Create tab');
+      } else {
+        prompt = iterationPromptInput.value.trim();
+        messageType = 'iterate-design';
+        logDebug('Generate button clicked in Iterate tab');
+      }
+      
       const apiKey = apiKeyInput.value.trim();
       
       if (!prompt) {
@@ -405,15 +737,17 @@
       // Send message to the plugin code
       parent.postMessage({ 
         pluginMessage: { 
-          type: 'generate-design', 
+          type: messageType, 
           prompt: prompt,
           apiKey: apiKey
         } 
       }, '*');
       
+      logDebug(`Sent message to plugin: ${messageType}`);
+      
       // Update UI for processing state
       generateButton.disabled = true;
-      generateButtonText.textContent = 'Generating...';
+      generateButtonText.textContent = activeTab === 'create' ? 'Generating...' : 'Updating...';
       loadingSpinner.classList.remove('hidden');
     });
     
@@ -430,12 +764,30 @@
     window.onmessage = (event) => {
       const message = event.data.pluginMessage;
       
+      if (message) {
+        logDebug(`Received message from plugin: ${JSON.stringify(message)}`);
+      }
+      
+      if (message && message.type === 'debug-log') {
+        logDebug(`PLUGIN: ${message.message}`);
+      }
+      
       if (message && message.type === 'generation-update') {
         if (message.status === 'Processing prompt...') {
           showStatus('processing', '🔄 ' + message.status);
         } else if (message.status === 'success') {
           showStatus('success', '✅ ' + message.message);
           resetGenerateButton();
+          
+          // Enable iteration after successful generation
+          if (activeTab === 'create') {
+            hasGeneratedDesign = true;
+            
+            // Show a notification to guide the user to the iteration tab
+            setTimeout(() => {
+              showStatus('success', '✅ Design generated! Click on the "Iterate" tab or the button below to refine your design.');
+            }, 1000);
+          }
         } else if (message.status === 'error') {
           showStatus('error', '❌ ' + message.message);
           resetGenerateButton();
@@ -448,20 +800,35 @@
       statusContainer.textContent = message;
       statusContainer.className = `status ${type}`;
       statusContainer.classList.remove('hidden');
+      logDebug(`Status message: ${type} - ${message}`);
     }
     
     // Helper function to reset generate button state
     function resetGenerateButton() {
       generateButton.disabled = false;
-      generateButtonText.textContent = 'Generate Design';
+      generateButtonText.textContent = activeTab === 'create' ? 'Generate Design' : 'Update Design';
       loadingSpinner.classList.add('hidden');
     }
     
     // Auto-resize textarea as user types
-    promptInput.addEventListener('input', function() {
-      this.style.height = 'auto';
-      this.style.height = (this.scrollHeight) + 'px';
-    });
+    function setupTextareaResize(textarea) {
+      textarea.addEventListener('input', function() {
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight) + 'px';
+      });
+    }
+    
+    setupTextareaResize(promptInput);
+    setupTextareaResize(iterationPromptInput);
+    
+    // Show a welcome message that highlights iteration feature
+    showStatus('success', '👋 Welcome! Create designs with the "Create" tab, then iterate on them with the "Iterate" tab!');
+    setTimeout(() => {
+      // Don't hide automatically to ensure the user sees it
+    }, 10000);
+
+    // Log that we're starting with iteration UI visible
+    logDebug('Plugin started with iteration UI visible (for testing)');
   </script>
 </body>
 </html> 
