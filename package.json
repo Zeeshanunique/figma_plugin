@@ -2,14 +2,12 @@
   "name": "mcp-cursor-server",
   "version": "1.0.0",
   "description": "An MCP server for Cursor IDE integration",
-  "main": "dist/index.js",
-  "type": "module",
+  "main": "src/mcp-interactive.cjs",
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/index.js",
-    "dev": "ts-node --esm src/index.ts",
-    "watch": "tsc --watch",
-    "dev:helper": "node dev.js"
+    "start": "node src/mcp-interactive.cjs",
+    "setup": "node setup.cjs",
+    "simple": "node src/mcp-simple.cjs",
+    "http": "node src/mcp-http-server.cjs"
   },
   "keywords": [
     "mcp",
