@@ -5,8 +5,8 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { exec } from 'child_process';
 import { promisify } from 'util';
-import { findFiles, getFileTypeCounts, getGitInfo } from './windows-compat';
-import { VERSION } from './version';
+import { findFiles, getFileTypeCounts, getGitInfo } from './windows-compat.js';
+import { VERSION } from './version.js';
 
 const execAsync = promisify(exec);
 
