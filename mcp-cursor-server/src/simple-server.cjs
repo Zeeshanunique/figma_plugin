@@ -1,0 +1,1 @@
+console.log("MCP Server Test (CommonJS)"); console.log("Node.js version:", process.version); try { const sdk = require("@modelcontextprotocol/sdk"); console.log("MCP SDK loaded successfully"); } catch (error) { console.error("Failed to load MCP SDK:", error.message); } console.log("Test completed");
