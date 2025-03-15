@@ -1,1 +1,1 @@
-{"name":"mcp-cursor-server","version":"1.0.0","description":"An MCP server for Cursor IDE integration","main":"src/simple-server.js","type":"module","scripts":{"start":"node src/simple-server.js","setup":"node setup.cjs"},"keywords":["mcp","cursor","ide","ai"],"author":"","license":"MIT"}
+{"name":"mcp-cursor-server","version":"1.0.0","description":"An MCP server for Cursor IDE integration","main":"src/enhanced-server.cjs","scripts":{"start":"node src/enhanced-server.cjs","setup":"node setup.cjs"},"keywords":["mcp","cursor","ide","ai"],"author":"","license":"MIT"}
