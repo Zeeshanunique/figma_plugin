@@ -6,6 +6,7 @@ import * as path from 'path';
 import { exec } from 'child_process';
 import { promisify } from 'util';
 import { findFiles, getFileTypeCounts, getGitInfo } from './windows-compat';
+import { VERSION } from './version';
 
 const execAsync = promisify(exec);
 
@@ -15,12 +16,14 @@ const execAsync = promisify(exec);
  * This server provides tools that can be used from within Cursor IDE via chat interface
  */
 async function main() {
-  // Create an MCP server
+  // Create an MCP server with version information
   const server = new McpServer({
-    name: "Cursor IDE Helper",
-    version: "1.0.0",
-    description: "A helpful MCP server for Cursor IDE integration"
+    name: VERSION.name,
+    version: VERSION.version,
+    description: VERSION.description
   });
+
+  console.log(`Starting ${VERSION.name} v${VERSION.version}...`);
 
   // Add a file search tool
   server.tool(
@@ -211,6 +214,44 @@ async function main() {
     }
   );
 
+  // Add a file editing tool
+  server.tool(
+    "edit-file",
+    {
+      path: z.string().describe("Path to the file to edit"),
+      content: z.string().describe("New content for the file"),
+      createIfNotExists: z.boolean().optional().describe("Create the file if it doesn't exist (defaults to false)")
+    },
+    async ({ path: filePath, content, createIfNotExists = false }) => {
+      try {
+        const fileExists = fs.existsSync(filePath);
+        
+        if (!fileExists && !createIfNotExists) {
+          return {
+            content: [{ type: "text", text: `File not found: ${filePath}` }],
+            isError: true
+          };
+        }
+        
+        fs.writeFileSync(filePath, content, 'utf8');
+        
+        return {
+          content: [{ 
+            type: "text", 
+            text: fileExists 
+              ? `File ${filePath} has been updated.`
+              : `File ${filePath} has been created.`
+          }]
+        };
+      } catch (error) {
+        return {
+          content: [{ type: "text", text: `Error editing file: ${error}` }],
+          isError: true
+        };
+      }
+    }
+  );
+
   // Add a semantic search resource
   server.resource(
     "code-search",
@@ -249,36 +290,50 @@ async function main() {
         contents: [{
           uri: uri.href,
           text: `Documentation for ${topic}:\n\n` +
-                `This is a placeholder for actual documentation that would be fetched for ${topic}.`
+                `This is a placeholder for actual documentation content about ${topic}.`
         }]
       };
     }
   );
 
-  // Add a prompt for code refactoring
+  // Add a prompt template for code refactoring
   server.prompt(
     "refactor-code",
+    `You are an expert software engineer specializing in code refactoring.
+Your task is to refactor the following code to improve its:
+- Readability
+- Maintainability
+- Performance (where applicable)
+- Adherence to best practices
+
+Here's the code to refactor:
+{codeToRefactor}
+
+Consider the following aspects when refactoring:
+1. Variable and function naming
+2. Code structure and organization
+3. Removing redundancy and duplication
+4. Optimizing logic and algorithms
+5. Error handling
+6. Documentation and comments
+7. Design patterns (if applicable)
+
+Language: {language}
+Additional context: {context}
+
+Provide the refactored code along with a brief explanation of the changes made and the benefits they bring.`,
+    // Define the parameters for this prompt template
     {
-      code: z.string().describe("The code to refactor"),
-      language: z.string().describe("The programming language"),
-      goal: z.string().describe("The refactoring goal, e.g., 'improve performance', 'increase readability'")
-    },
-    ({ code, language, goal }) => ({
-      messages: [{
-        role: "user",
-        content: {
-          type: "text",
-          text: `Please refactor this ${language} code to ${goal}:\n\n\`\`\`${language}\n${code}\n\`\`\``
-        }
-      }]
-    })
+      codeToRefactor: z.string().describe("The code that needs to be refactored"),
+      language: z.string().describe("The programming language of the code"),
+      context: z.string().optional().describe("Additional context about the code or requirements")
+    }
   );
 
   // Start the server with stdio transport
-  console.log("Starting Cursor IDE Helper MCP server...");
+  console.log("Server ready. Waiting for connections...");
   const transport = new StdioServerTransport();
-  await server.connect(transport);
-  console.log("MCP server connected");
+  server.listen(transport);
 }
 
 main().catch(error => {

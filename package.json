@@ -8,7 +8,8 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "dev": "ts-node --esm src/index.ts",
-    "watch": "tsc --watch"
+    "watch": "tsc --watch",
+    "dev:helper": "node dev.js"
   },
   "keywords": [
     "mcp",
@@ -19,11 +20,11 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^0.1.0",
-    "zod": "^3.22.4"
+    "@modelcontextprotocol/sdk": "^1.7.0",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.8.2"
   }
 } 
