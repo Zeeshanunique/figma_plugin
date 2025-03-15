@@ -1,1 +1,1 @@
-{"mcpServers":{"CursorPlugin":{"command":"cmd","args":["/c","node","C:/Users/dell/Desktop/mcp/figma_plugin/mcp-cursor-server/src/enhanced-server.cjs"]}}}
+{"mcpServers":{"CursorPlugin":{"command":"cmd","args":["/c","node","C:/Users/dell/Desktop/mcp/figma_plugin/mcp-cursor-server/src/mcp-interactive.cjs"]}}}
