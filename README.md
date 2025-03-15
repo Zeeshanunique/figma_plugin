@@ -1,65 +1,104 @@
-# AI Design Generator - Figma Plugin
+# Cursor IDE MCP Server
 
-A Figma plugin that uses AI to generate design elements directly within Figma based on text prompts.
+This is an MCP (Model Context Protocol) server designed to be used with the Cursor IDE. It provides a set of tools and resources that can be accessed through the Cursor chat interface.
+
+## What is MCP?
+
+The [Model Context Protocol (MCP)](https://modelcontextprotocol.io) allows applications to provide context for LLMs in a standardized way. This server implements MCP to expose a set of tools that help with development tasks directly through the Cursor chat interface.
 
 ## Features
 
-- Text-to-design generation using AI
-- Simple and intuitive user interface
-- Works with or without an API key (demo mode available)
-- Generates design elements directly in your Figma file
+This MCP server provides the following tools and resources:
+
+### Tools
+
+- **search-files**: Search for files by name pattern within a directory
+- **read-file**: Read the contents of a file, with optional line range selection
+- **run-command**: Execute a shell command and return the output
+- **project-info**: Get information about the current project (dependencies, git info, file types)
+- **suggest-code**: Get code suggestions based on provided context (placeholder in this demo)
+
+### Resources
+
+- **code-search**: Semantic search across codebase (placeholder in this demo)
+- **api-docs**: Documentation search for a specific topic (placeholder in this demo)
+
+### Prompts
+
+- **refactor-code**: Prompt template for code refactoring
 
 ## Installation
 
-1. Download this repository as a ZIP file and extract it
-2. In Figma, go to **Plugins > Development > Import plugin from manifest...**
-3. Select the `manifest.json` file from the extracted folder
+1. Clone this repository:
+   ```
+   git clone <repository-url>
+   cd mcp-cursor-server
+   ```
 
-## Usage
+2. Install dependencies:
+   ```
+   npm install
+   ```
 
-1. Select where you want to place the generated design in your Figma file
-2. Open the plugin from the Plugins menu
-3. Enter a descriptive prompt for what you want to generate
-4. (Optional) Enter your OpenAI API key if you want to use the AI generation feature
-5. Click "Generate Design"
-6. The plugin will create a new frame with your generated design elements
+3. Build the server:
+   ```
+   npm run build
+   ```
 
-## Prompt Tips
+## Usage with Cursor IDE
 
-For best results when using AI generation:
+To use this MCP server with Cursor IDE:
 
-- Be specific about what design element you need (icon, button, layout, etc.)
-- Include details about style, colors, and mood
-- Mention the intended use case or context
+1. Start the server:
+   ```
+   npm start
+   ```
 
-Examples:
-- "A minimalist logo for a coffee shop with a cup icon and clean typography"
-- "A colorful gradient button with rounded corners for a mobile app"
-- "A professional sidebar navigation menu with icons for a banking dashboard"
+2. In Cursor, connect to the MCP server with the following command in the AI chat:
+   ```
+   /mcp connect <path-to-server>/mcp-cursor-server
+   ```
 
-## API Key
+   Alternatively, if you want to run in development mode:
+   ```
+   npm run dev
+   ```
+   And then connect using:
+   ```
+   /mcp connect npx ts-node --esm <path-to-server>/mcp-cursor-server/src/index.ts
+   ```
 
-If you have an OpenAI API key, you can use it to access the AI generation features. Without an API key, the plugin will run in demo mode with simulated designs.
+3. Once connected, you can use the MCP commands directly from the Cursor chat:
 
-To get an API key:
-1. Sign up at [OpenAI](https://platform.openai.com/signup)
-2. Navigate to the [API Keys page](https://platform.openai.com/api-keys)
-3. Create a new secret key
-4. Copy and paste it into the plugin's API Key field
+   Example usages:
+   ```
+   /mcp search-files "*.ts"
+   /mcp read-file src/index.ts
+   /mcp project-info
+   /mcp run-command "npm list --depth=0"
+   ```
 
-Note: Keep your API key secure and never share it publicly.
+## Extending the Server
 
-## Development
+You can extend this server with additional tools by modifying the `src/index.ts` file:
 
-This plugin is built using:
-- Figma Plugin API
-- HTML/CSS/JavaScript
-- OpenAI API (optional)
-
-To modify the plugin:
-1. Edit the code in your preferred code editor
-2. Make your changes to the files
-3. Test the plugin in Figma's development mode
+```typescript
+// Add a new tool
+server.tool(
+  "your-tool-name",
+  {
+    // Define parameters with zod schemas
+    param1: z.string().describe("Description of parameter 1"),
+    param2: z.number().optional().describe("Description of parameter 2")
+  },
+  async ({ param1, param2 }) => {
+    // Implement your tool logic here
+    return {
+      content: [{ type: "text", text: "Your tool result" }]
+    };
+  }
+);
+```
 
 ## License
 

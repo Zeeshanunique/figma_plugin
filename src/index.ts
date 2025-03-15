@@ -5,6 +5,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { exec } from 'child_process';
 import { promisify } from 'util';
+import { findFiles, getFileTypeCounts, getGitInfo } from './windows-compat';
 
 const execAsync = promisify(exec);
 
@@ -31,18 +32,9 @@ async function main() {
     },
     async ({ pattern, directory = ".", maxResults = 20 }) => {
       try {
-        const { stdout, stderr } = await execAsync(
-          `find ${directory} -type f -name "${pattern}" | head -n ${maxResults}`
-        );
+        // Use our Windows-compatible file search
+        const files = await findFiles(pattern, directory, maxResults);
         
-        if (stderr) {
-          return {
-            content: [{ type: "text", text: `Error searching files: ${stderr}` }],
-            isError: true
-          };
-        }
-        
-        const files = stdout.trim().split('\n').filter(Boolean);
         return {
           content: [{ 
             type: "text", 
@@ -193,24 +185,18 @@ async function main() {
           info += "No package.json found.\n";
         }
         
-        // Try to detect git info
-        try {
-          const { stdout: gitRemote } = await execAsync('git remote -v', { cwd: directory });
-          if (gitRemote) {
-            info += "\nGit Repositories:\n" + gitRemote;
-          }
-        } catch (error) {
+        // Get git info using Windows-compatible function
+        const gitInfo = await getGitInfo(directory);
+        if (gitInfo) {
+          info += "\nGit Repositories:\n" + gitInfo;
+        } else {
           info += "\nNo git repository detected.\n";
         }
         
-        // Count files by type
-        try {
-          const { stdout: fileCount } = await execAsync('find . -type f | grep -v "node_modules\\|.git" | grep "\\." | sed \'s/.*\\.//\' | sort | uniq -c | sort -nr', { cwd: directory });
-          if (fileCount) {
-            info += "\nFile types (excluding node_modules and .git):\n" + fileCount;
-          }
-        } catch (error) {
-          // Ignore errors in file count
+        // Get file type counts using Windows-compatible function
+        const fileTypeCounts = await getFileTypeCounts(directory);
+        if (fileTypeCounts) {
+          info += "\nFile types (excluding node_modules and .git):\n" + fileTypeCounts;
         }
         
         return {
