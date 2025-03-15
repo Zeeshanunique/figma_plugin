@@ -4,7 +4,7 @@ This is an MCP (Model Context Protocol) server designed to be used with the Curs
 
 ## Current Status
 
-This project is currently in development. We have successfully implemented basic file operations and an interactive command-line interface.
+This project is currently in development. We have successfully implemented basic file operations, an interactive command-line interface, and an HTTP server with REST API endpoints.
 
 ### Working Features
 - Basic server setup
@@ -12,6 +12,8 @@ This project is currently in development. We have successfully implemented basic
 - Documentation
 - Simple file operations (list, read, create, delete)
 - Interactive command-line interface
+- HTTP server with REST API
+- Server-Sent Events (SSE) endpoint for MCP
 - CommonJS compatibility
 
 ### In Progress
@@ -51,6 +53,7 @@ The [Model Context Protocol (MCP)](https://modelcontextprotocol.io) allows appli
 - `npm start` - Start the interactive MCP server
 - `npm run setup` - Run the setup script to verify your environment
 - `npm run simple` - Run a simple demonstration of file operations
+- `npm run http` - Start the HTTP server with REST API endpoints
 
 ## Usage with Cursor IDE
 
@@ -79,6 +82,32 @@ The interactive MCP server supports the following commands:
 - `delete <filename>` - Delete a file
 - `help` - Show help message
 - `exit` - Exit the program
+
+## HTTP Server
+
+The HTTP server provides a REST API for file operations and an SSE endpoint for MCP. It runs on port 3333 by default.
+
+### REST API Endpoints
+
+- `GET /api/list?dir=path/to/directory` - List files in the specified directory (defaults to current directory)
+- `GET /api/read?path=path/to/file` - Read the content of the specified file
+- `POST /api/create` - Create a new file with the specified content
+  ```json
+  {
+    "path": "path/to/file",
+    "content": "File content here"
+  }
+  ```
+- `POST /api/delete` - Delete the specified file
+  ```json
+  {
+    "path": "path/to/file"
+  }
+  ```
+
+### SSE Endpoint
+
+- `GET /sse` - Server-Sent Events endpoint for MCP
 
 ## Planned Features
 
